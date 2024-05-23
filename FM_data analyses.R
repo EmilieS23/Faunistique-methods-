@@ -59,3 +59,21 @@ summary(model7)
 model8 <- pcount(~1~Orientation+Vegetation, umf)
 summary(model8)
 #AIC = 163.2236
+
+#utilisation des models 1 (cats) et 6 (sun) pour l'instant, qui présentaient les plus bas AIC
+
+(p.m1 = backTransform(model1, typ = "det") ) 
+(p.m6 = backTransform(model6, typ = "det") ) 
+confint(model6, type='det') 
+confint(backTransform(model6, type='det')) 
+
+####
+#Abundance
+####
+
+new.data.sunny = data.frame(Orientation = seq (-3,3,length.out=100), Sun = c("sunny")) 
+new.data.shaded = data.frame(Orientation = seq (-3,3,length.out=100), Sun = c("shaded")) 
+new.data.morningsun = data.frame(Orientation = seq (-3,3,length.out=100), Sun = c("morning sun")) 
+new.data.middaysun = data.frame(Orientation = seq (-3,3,length.out=100), Sun = c("midday sun")) 
+new.data.afternoonsun = data.frame(Orientation = seq (-3,3,length.out=100), Sun = c("afternoon sun"))  
+
