@@ -85,3 +85,39 @@ pred.abundance.afternoonsun = predict(model6, newdata = new.data.afternoonsun, t
 
 
 head(pred.abundance.sunny) # have a look at the stuff which was predicted 
+
+####
+#Plot
+####
+
+plot(pred.abundance.sunny$Lizards, pred.abundance.sunny$Predicted)  
+plot(pred.abundance.shaded$Lizards, pred.abundance.shaded$Predicted) 
+#etc
+
+par(cex.lab = 1.5) 
+x11() 
+plot(pred.abundance.sunny$Lizards, pred.abundance.sunny$Predicted, ylim = c(0, 25), xlab = "x", ylab = "y", type = "l", lwd=2) 
+points(pred.abundance.sunny$Lizards, pred.abundance.sunny$lower, type = "l", lty = 2) # add confidence intervals 
+points(pred.abundance.sunny$Lizards, pred.abundance.sunny$upper, type = "l", lty = 2) 
+points(pred.abundance.shaded$Lizards, pred.abundance.shaded$Predicted, ylim = c(0, 60), xlab = "Covariate", ylab = "Estimated abundance", type = "l", lwd=2, col = "red") 
+points(pred.abundance.shaded$Lizards, pred.abundance.shaded$lower, type = "l", lty = 2, col = "red") # add confidence intervals 
+points(pred.abundance.shaded$Lizards, pred.abundance.shaded$upper, type = "l", lty = 2, col = "red") 
+points(pred.abundance.middaysun$Lizards, pred.abundance.middaysun$Predicted, ylim = c(0, 60), xlab = "Covariate", ylab = "Estimated abundance", type = "l", lwd=2, col = "blue") 
+points(pred.abundance.middaysun$Lizards, pred.abundance.middaysun$lower, type = "l", lty = 2, col = "blue") # add confidence intervals 
+points(pred.abundance.middaysun$Lizards, pred.abundance.middaysun$upper, type = "l", lty = 2, col = "blue") 
+
+#bon il y a l'idée du code mais ça donne qqch de faut...
+
+#Other way to plot
+
+new.sundata = data.frame(Liards = mean(Lizards), Sun = c("sunny", "shaded", "morning sun", "midday sun", "afternoon sun") )  
+
+pred.abundance.Sun = predict(model6, newdata = new.sundata, type = "state", append=T) 
+pred.abundance.Sun$Sun = factor(pred.abundance.Sun$Sun) 
+
+par(cex.lab = 1.5) 
+plot(1:5, pred.abundance.Sun$Predicted, xaxt="n", xlim = c(0.5, 5.5), ylim = c(0,5), xlab = "Sun", ylab = "estimated abundance", col = "chocolate" ) 
+axis(1, at = 1:5, labels = c("sunny", "shaded", "morning sun", "midday sun", "afternoon sun")) 
+segments(1:5, pred.abundance.Sun$lower, 1:5, pred.abundance.Sun$upper, col = "chocolate") 
+
+#ce graphe semble mieux et singificatif mais pas hyper beau (donc encore à améliorer!)
