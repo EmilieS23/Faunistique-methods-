@@ -60,12 +60,35 @@ model8 <- pcount(~1~Orientation+Vegetation, umf)
 summary(model8)
 #AIC = 163.2236
 
-#utilisation des models 1 (cats) et 6 (sun) pour l'instant, qui présentaient les plus bas AIC
-
-(p.m1 = backTransform(model1, typ = "det") ) 
+#transformation des paramètres en échelle logarithmique --> cela dit je sais pas trop quoi faire de ces résultats...
+(p.m1 = backTransform(model1, typ = "det") )
+(p.m2 = backTransform(model2, typ = "det") ) 
+(p.m3 = backTransform(model3, typ = "det") ) 
+(p.m4 = backTransform(model4, typ = "det") ) 
+(p.m5 = backTransform(model5, typ = "det") ) 
 (p.m6 = backTransform(model6, typ = "det") ) 
+(p.m7 = backTransform(model7, typ = "det") ) 
+(p.m8 = backTransform(model8, typ = "det") ) 
+(p.mall = backTransform(modelall, typ = "det") ) 
+confint(model1, type='det') 
+confint(backTransform(model1, type='det')) 
+confint(model2, type='det') 
+confint(backTransform(model2, type='det')) 
+confint(model3, type='det') 
+confint(backTransform(model3, type='det')) 
+confint(model4, type='det') 
+confint(backTransform(model4, type='det')) 
+confint(model5, type='det') 
+confint(backTransform(model5, type='det')) 
 confint(model6, type='det') 
 confint(backTransform(model6, type='det')) 
+confint(model7, type='det') 
+confint(backTransform(model7, type='det')) 
+confint(model8, type='det') 
+confint(backTransform(model8, type='det')) 
+confint(modelall, type='det') 
+confint(backTransform(modelall, type='det')) 
+
 
 ####
 #Abundance
