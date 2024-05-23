@@ -1,1 +1,3 @@
 # Faunistique-methods
+
+J'ai réussi à trouver les différentes valeurs d'AIC, il faudrait réussir à faire des plots de différents paramètres et aussi je ne sais pas trop comment intégrer les données météo et temps...
