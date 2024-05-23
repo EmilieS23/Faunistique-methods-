@@ -77,3 +77,11 @@ new.data.morningsun = data.frame(Orientation = seq (-3,3,length.out=100), Sun = 
 new.data.middaysun = data.frame(Orientation = seq (-3,3,length.out=100), Sun = c("midday sun")) 
 new.data.afternoonsun = data.frame(Orientation = seq (-3,3,length.out=100), Sun = c("afternoon sun"))  
 
+pred.abundance.sunny = predict(model6, newdata = new.data.sunny, type = "state", append=T) 
+pred.abundance.shaded = predict(model6, newdata = new.data.shaded, type = "state", append=T) 
+pred.abundance.morningsun = predict(model6, newdata = new.data.morningsun, type = "state", append=T)
+pred.abundance.middaysun = predict(model6, newdata = new.data.middaysun, type = "state", append=T) 
+pred.abundance.afternoonsun = predict(model6, newdata = new.data.afternoonsun, type = "state", append=T) 
+
+
+head(pred.abundance.sunny) # have a look at the stuff which was predicted 
